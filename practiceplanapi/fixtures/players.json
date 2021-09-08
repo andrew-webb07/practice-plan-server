@@ -4,7 +4,9 @@
         "pk": 1,
         "fields": {
             "user": 1,
-            "bio": "Test Player"
+            "practice_focus": "Guitar",
+            "bio": "Test Player",
+            "is_public": false
         }
     }
 ]
