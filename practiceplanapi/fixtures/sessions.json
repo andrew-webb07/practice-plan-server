@@ -1,0 +1,24 @@
+[
+    {
+        "model": "practiceplanapi.session",
+        "pk": 1,
+        "fields": {
+            "player": 1,
+            "practice_plan": 1,
+            "length_of_session": 60,
+            "date": "2021-07-31",
+            "notes": "I need to get back into practice"
+        }
+    },
+    {
+        "model": "practiceplanapi.session",
+        "pk": 2,
+        "fields": {
+            "player": 1,
+            "practice_plan": 2,
+            "length_of_session": 90,
+            "date": "2021-08-31",
+            "notes": "I need to gain more foot speed"
+        }
+    }
+]

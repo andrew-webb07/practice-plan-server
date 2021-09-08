@@ -1,0 +1,10 @@
+[
+    {
+        "model": "practiceplanapi.player",
+        "pk": 1,
+        "fields": {
+            "user": 1,
+            "bio": "Test Player"
+        }
+    }
+]

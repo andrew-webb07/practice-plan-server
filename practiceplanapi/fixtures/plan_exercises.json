@@ -1,0 +1,26 @@
+[
+    {
+        "model": "practiceplanapi.planexercise",
+        "pk": 1,
+        "fields": {
+            "exercise": 1,
+            "practice_plan": 1
+        }
+    },
+    {
+        "model": "practiceplanapi.planexercise",
+        "pk": 2,
+        "fields": {
+            "exercise": 2,
+            "practice_plan": 1
+        }
+    },
+    {
+        "model": "practiceplanapi.planexercise",
+        "pk": 3,
+        "fields": {
+            "exercise": 2,
+            "practice_plan": 2
+        }
+    }
+]
