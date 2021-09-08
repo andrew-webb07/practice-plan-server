@@ -1,0 +1,16 @@
+[
+    {
+        "model": "practiceplanapi.category",
+        "pk": 1,
+        "fields": {
+            "label": "Timing"
+        }
+    },
+    {
+        "model": "practiceplanapi.category",
+        "pk": 2,
+        "fields": {
+            "label": "Speed"
+        }
+    }
+]

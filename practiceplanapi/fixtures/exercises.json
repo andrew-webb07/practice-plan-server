@@ -1,0 +1,24 @@
+[
+    {
+        "model": "practiceplanapi.exercise",
+        "pk": 1,
+        "fields": {
+            "player": 1,
+            "title": "rudiments",
+            "description": "All exercises on the 1st page of stick control",
+            "category": 2,
+            "example_picture": "Maxresdefault.jpeg"
+        }
+    },
+    {
+        "model": "practiceplanapi.exercise",
+        "pk": 2,
+        "fields": {
+            "player": 1,
+            "title": "Gap Click",
+            "description": "Play different grooves to metronome with 8 bars with click 8 bars no click",
+            "category": 1,
+            "example_picture": "Maxresdefault.jpeg"
+        }
+    }
+]

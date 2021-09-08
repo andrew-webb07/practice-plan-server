@@ -1,0 +1,20 @@
+[
+    {
+        "model": "practiceplanapi.practiceplan",
+        "pk": 1,
+        "fields": {
+            "player": 1,
+            "title": "Warm up and groove",
+            "description": "This plan will focus on warm ups and groove exercise"
+        }
+    },
+    {
+        "model": "practiceplanapi.practiceplan",
+        "pk": 2,
+        "fields": {
+            "player": 1,
+            "title": "Speed and Endurance",
+            "description": "Focusing on building speed"
+        }
+    }
+]
