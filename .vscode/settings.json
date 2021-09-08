@@ -1,0 +1,17 @@
+{
+    "python.linting.enabled": true,
+    "python.linting.pylintEnabled": true,
+    "python.linting.pylintArgs": [
+        "--load-plugins=pylint_django",
+        "--django-settings-module=practice-plan-server.settings"
+    ],
+    "python.envFile": "${workspaceFolder}/.env",
+    "sqltools.connections": [
+        {
+            "previewLimit": 50,
+            "driver": "SQLite",
+            "name": "Practice Plan",
+            "database": "./db.sqlite3"
+        }
+    ],
+}
