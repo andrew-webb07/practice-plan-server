@@ -9,7 +9,6 @@ from practiceplanapi.models import Exercise, Player, Category
 from django.core.files.base import ContentFile
 import base64
 import uuid
-from itertools import chain
 from django.db.models import Q
 
 class ExerciseView(ViewSet):
