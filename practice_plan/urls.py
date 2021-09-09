@@ -17,13 +17,14 @@ from django.contrib import admin
 from django.urls import path
 from django.conf.urls import include
 from rest_framework import routers
-from practiceplanapi.view import register_user, login_user, ExerciseView, CategoryView
+from practiceplanapi.view import register_user, login_user, ExerciseView, CategoryView, PlayerView
 from django.conf import settings
 from django.conf.urls.static import static
 
 router = routers.DefaultRouter(trailing_slash=False)
 router.register(r'exercises', ExerciseView, 'exercise')
 router.register(r'categories', CategoryView, 'category')
+router.register(r'players', PlayerView, 'players')
 
 urlpatterns = [
     path('admin/', admin.site.urls),
