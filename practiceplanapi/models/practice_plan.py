@@ -5,3 +5,4 @@ class PracticePlan(models.Model):
     player = models.ForeignKey("Player", on_delete=CASCADE)
     title = models.CharField(max_length=50)
     description = models.CharField(max_length=150)
+    exercises = models.ManyToManyField("Exercise", through="PlanExercise", related_name="exercises")
