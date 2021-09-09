@@ -3,3 +3,4 @@ from .exercise import ExerciseView
 from .category import CategoryView
 from .player import PlayerView
 from .practice_plan import PracticePlanView
+from .session import SessionView
