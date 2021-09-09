@@ -17,7 +17,7 @@ from django.contrib import admin
 from django.urls import path
 from django.conf.urls import include
 from rest_framework import routers
-from practiceplanapi.view import register_user, login_user, ExerciseView, CategoryView, PlayerView, PracticePlanView
+from practiceplanapi.view import register_user, login_user, ExerciseView, CategoryView, PlayerView, PracticePlanView, SessionView
 from django.conf import settings
 from django.conf.urls.static import static
 
@@ -26,6 +26,7 @@ router.register(r'exercises', ExerciseView, 'exercise')
 router.register(r'categories', CategoryView, 'category')
 router.register(r'players', PlayerView, 'players')
 router.register(r'practiceplans', PracticePlanView, 'practiceplans')
+router.register(r'sessions', SessionView, 'sessions')
 
 urlpatterns = [
     path('admin/', admin.site.urls),
