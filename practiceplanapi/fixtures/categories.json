@@ -3,6 +3,7 @@
         "model": "practiceplanapi.category",
         "pk": 1,
         "fields": {
+            "player": 1,
             "label": "Timing"
         }
     },
@@ -10,6 +11,7 @@
         "model": "practiceplanapi.category",
         "pk": 2,
         "fields": {
+            "player": 1,
             "label": "Speed"
         }
     }
