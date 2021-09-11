@@ -6,6 +6,7 @@ from rest_framework.viewsets import ViewSet
 from rest_framework.response import Response
 from rest_framework import serializers
 from practiceplanapi.models import Category, Player
+from django.db.models import Q
 
 class CategoryView(ViewSet):
     """Practice Plan Categories"""
@@ -15,8 +16,10 @@ class CategoryView(ViewSet):
         Returns:
             Response -- JSON serialized category instance
         """
+        player = Player.objects.get(user=request.auth.user)
         category = Category()
         category.label = request.data["label"]
+        category.player = player
 
         try:
             category.save()
@@ -47,7 +50,9 @@ class CategoryView(ViewSet):
         Returns:
             Response -- Empty body with 204 status code
         """
+        player = Player.objects.get(user=request.auth.user)
         category = Category.objects.get(pk=pk)
+        category.player = player
         category.label = request.data["label"]
         category.save()
 
@@ -75,7 +80,7 @@ class CategoryView(ViewSet):
         Returns:
             Response -- JSON serialized list of categories
         """
-        categories = Category.objects.all()
+        categories = Category.objects.filter(Q(player__user=request.auth.user) | Q(player__is_public=1))
 
         serializer = CategorySerializer(
             categories, many=True, context={'request': request})
@@ -90,5 +95,5 @@ class CategorySerializer(serializers.ModelSerializer):
     """
     class Meta:
         model = Category
-        fields = ('id', 'label')
+        fields = ('id', 'label', 'player')
         depth = 1

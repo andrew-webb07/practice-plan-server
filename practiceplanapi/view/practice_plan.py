@@ -102,4 +102,4 @@ class PracticePlanSerializer(serializers.ModelSerializer):
     class Meta:
         model = PracticePlan
         fields = ('id',  'player', 'title', 'description', 'exercises')
-        depth = 1
+        depth = 3
