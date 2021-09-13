@@ -7,3 +7,10 @@ class Exercise(models.Model):
     description = models.CharField(max_length=150)
     category = models.ForeignKey("Category", on_delete=CASCADE)
     example_picture = models.ImageField(upload_to="image", height_field=None, width_field=None, max_length=None, null=True)
+
+    @property
+    def is_creator(self):
+        return self.__is_creator
+    @is_creator.setter
+    def is_creator(self, value):
+        self.__is_creator = value

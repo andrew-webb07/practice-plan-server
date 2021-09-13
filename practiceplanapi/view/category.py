@@ -82,6 +82,12 @@ class CategoryView(ViewSet):
         """
         categories = Category.objects.filter(Q(player__user=request.auth.user) | Q(player__is_public=1))
 
+        for category in categories:
+            if category.player.user == request.auth.user:
+                category.is_creator = True
+            else:
+                category.is_creator = False
+
         serializer = CategorySerializer(
             categories, many=True, context={'request': request})
         return Response(serializer.data)
@@ -95,5 +101,5 @@ class CategorySerializer(serializers.ModelSerializer):
     """
     class Meta:
         model = Category
-        fields = ('id', 'label', 'player')
+        fields = ('id', 'label', 'is_creator')
         depth = 1

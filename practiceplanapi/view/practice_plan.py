@@ -25,7 +25,7 @@ class PracticePlanView(ViewSet):
 
         try:
             practice_plan.save()
-            practice_plan.exercises.set(request.data["exercises"])
+            practice_plan.exercises.set([exercise["id"] for exercise in request.data["exercises"]])
             serializer = PracticePlanSerializer(practice_plan, context={'request': request})
             return Response(serializer.data, status=status.HTTP_201_CREATED)
         except ValidationError as ex:
@@ -60,7 +60,7 @@ class PracticePlanView(ViewSet):
         practice_plan.description = request.data["description"]
         practice_plan.player = player
         practice_plan.save()
-        practice_plan.exercises.set(request.data["exercises"])
+        practice_plan.exercises.set([exercise["id"] for exercise in request.data["exercises"]])
 
         return Response({}, status=status.HTTP_204_NO_CONTENT)
 
@@ -88,6 +88,12 @@ class PracticePlanView(ViewSet):
         """
         practice_plans = PracticePlan.objects.filter(Q(player__user=request.auth.user) | Q(player__is_public=1))
 
+        for practice_plan in practice_plans:
+            if practice_plan.player.user == request.auth.user:
+                practice_plan.is_creator = True
+            else:
+                practice_plan.is_creator = False
+
         serializer = PracticePlanSerializer(
             practice_plans, many=True, context={'request': request})
         return Response(serializer.data)
@@ -101,5 +107,5 @@ class PracticePlanSerializer(serializers.ModelSerializer):
     """
     class Meta:
         model = PracticePlan
-        fields = ('id',  'player', 'title', 'description', 'exercises')
+        fields = ('id',  'player', 'title', 'description', 'exercises', 'is_creator')
         depth = 3
