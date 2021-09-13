@@ -29,12 +29,11 @@ class ExerciseView(ViewSet):
         exercise.title = request.data["title"]
         exercise.description = request.data["description"]
         exercise.player = player
-        exercise.description = request.data["description"]
-        exercise.example_picture = request.data["examplePicture"]
-        # format, imgstr = request.data["examplePicture"].split(';base64,')
-        # ext = format.split('/')[-1]
-        # data = ContentFile(base64.b64decode(imgstr), name=f'{request.data["title"]}-{uuid.uuid4()}.{ext}')
-        # exercise.example_picture = data
+        # exercise.example_picture = request.data["examplePicture"]
+        format, imgstr = request.data["examplePicture"].split(';base64,')
+        ext = format.split('/')[-1]
+        data = ContentFile(base64.b64decode(imgstr), name=f'{request.data["title"]}-{uuid.uuid4()}.{ext}')
+        exercise.example_picture = data
 
         exercise_category = Category.objects.get(pk=request.data["categoryId"])
         exercise.category = exercise_category
@@ -110,10 +109,15 @@ class ExerciseView(ViewSet):
         """
         exercises = Exercise.objects.filter(Q(player__user=request.auth.user) | Q(player__is_public=1))
 
+        for exercise in exercises:
+            if exercise.player.user == request.auth.user:
+                exercise.is_creator = True
+            else:
+                exercise.is_creator = False
+
         serializer = ExerciseSerializer(
             exercises, many=True, context={'request': request})
         return Response(serializer.data)
-        
 
 class ExerciseSerializer(serializers.ModelSerializer):
     """JSON serializer for exercises
@@ -123,5 +127,5 @@ class ExerciseSerializer(serializers.ModelSerializer):
     """
     class Meta:
         model = Exercise
-        fields = ('id', 'title', 'description', 'player', 'category', 'example_picture')
+        fields = ('id', 'title', 'description', 'player', 'category', 'example_picture', 'is_creator')
         depth = 2
