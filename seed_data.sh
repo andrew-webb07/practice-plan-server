@@ -10,5 +10,4 @@ python manage.py loaddata players
 python manage.py loaddata categories
 python manage.py loaddata exercises
 python manage.py loaddata practiceplans
-python manage.py loaddata plan_exercises
 python manage.py loaddata sessions

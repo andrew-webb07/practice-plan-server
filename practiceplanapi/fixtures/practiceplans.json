@@ -5,7 +5,8 @@
         "fields": {
             "player": 1,
             "title": "Warm up and groove",
-            "description": "This plan will focus on warm ups and groove exercise"
+            "description": "This plan will focus on warm ups and groove exercise",
+            "exercises": [1,2]
         }
     },
     {
@@ -14,7 +15,8 @@
         "fields": {
             "player": 1,
             "title": "Speed and Endurance",
-            "description": "Focusing on building speed"
+            "description": "Focusing on building speed",
+            "exercises": [1]
         }
     }
 ]
