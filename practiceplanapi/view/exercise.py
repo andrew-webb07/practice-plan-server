@@ -111,12 +111,16 @@ class ExerciseView(ViewSet):
             Response -- JSON serialized list of exercises
         """
         exercises = Exercise.objects.filter(Q(player__user=request.auth.user) | Q(player__is_public=1))
+        search_text = self.request.query_params.get('q', None)
 
         for exercise in exercises:
             if exercise.player.user == request.auth.user:
                 exercise.is_creator = True
             else:
                 exercise.is_creator = False
+
+        if search_text is not None:
+            exercises = exercises.filter(Q(title__contains=search_text) | Q(description__contains=search_text) | Q(category__label__contains=search_text))
 
         serializer = ExerciseSerializer(
             exercises, many=True, context={'request': request})
