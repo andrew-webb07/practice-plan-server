@@ -87,12 +87,16 @@ class PracticePlanView(ViewSet):
             Response -- JSON serialized list of practice plans
         """
         practice_plans = PracticePlan.objects.filter(Q(player__user=request.auth.user) | Q(player__is_public=1))
+        search_text = self.request.query_params.get('q', None)
 
         for practice_plan in practice_plans:
             if practice_plan.player.user == request.auth.user:
                 practice_plan.is_creator = True
             else:
                 practice_plan.is_creator = False
+
+        if search_text is not None:
+            practice_plans = practice_plans.filter(Q(title__contains=search_text)| Q(description__contains=search_text))
 
         serializer = PracticePlanSerializer(
             practice_plans, many=True, context={'request': request})
