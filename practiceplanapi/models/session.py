@@ -12,6 +12,10 @@ class Session(models.Model):
     @property
     def length_of_each_exercise(self):
         """Length in minutes of each exercise in practice session"""
-        exercise_length = self.length_of_session / self.practice_plan.exercises.count()
-        # Remove decimal
-        return floatformat(exercise_length, 0)
+        try:
+            exercise_length = self.length_of_session / self.practice_plan.exercises.count()
+            # Remove decimal
+            return floatformat(exercise_length, 0)
+        except ZeroDivisionError as ex:
+            print(self.practice_plan.exercises.count())
+            return 0

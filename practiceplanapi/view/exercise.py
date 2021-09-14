@@ -30,10 +30,11 @@ class ExerciseView(ViewSet):
         exercise.description = request.data["description"]
         exercise.player = player
         # exercise.example_picture = request.data["examplePicture"]
-        format, imgstr = request.data["examplePicture"].split(';base64,')
-        ext = format.split('/')[-1]
-        data = ContentFile(base64.b64decode(imgstr), name=f'{request.data["title"]}-{uuid.uuid4()}.{ext}')
-        exercise.example_picture = data
+        if request.data["examplePicture"] is not "":
+            format, imgstr = request.data["examplePicture"].split(';base64,')
+            ext = format.split('/')[-1]
+            data = ContentFile(base64.b64decode(imgstr), name=f'{request.data["title"]}-{uuid.uuid4()}.{ext}')
+            exercise.example_picture = data
 
         exercise_category = Category.objects.get(pk=request.data["categoryId"])
         exercise.category = exercise_category
@@ -73,11 +74,13 @@ class ExerciseView(ViewSet):
 
         exercise = Exercise.objects.get(pk=pk)
         exercise.title = request.data["title"]
-        exercise.description = request.data["description"]
         exercise.player = player
         exercise.description = request.data["description"]
-        exercise.example_picture = request.data["examplePicture"]
-        exercise.player = player
+        if request.data["examplePicture"] is "":
+            format, imgstr = request.data["examplePicture"].split(';base64,')
+            ext = format.split('/')[-1]
+            data = ContentFile(base64.b64decode(imgstr), name=f'{request.data["title"]}-{uuid.uuid4()}.{ext}')
+            exercise.example_picture = data
 
         exercise_category = Category.objects.get(pk=request.data["categoryId"])
         exercise.category = exercise_category
