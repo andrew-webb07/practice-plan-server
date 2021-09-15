@@ -30,7 +30,7 @@ class ExerciseView(ViewSet):
         exercise.description = request.data["description"]
         exercise.player = player
         # exercise.example_picture = request.data["examplePicture"]
-        if request.data["examplePicture"] is not "":
+        if request.data["examplePicture"] != "":
             format, imgstr = request.data["examplePicture"].split(';base64,')
             ext = format.split('/')[-1]
             data = ContentFile(base64.b64decode(imgstr), name=f'{request.data["title"]}-{uuid.uuid4()}.{ext}')
@@ -76,7 +76,7 @@ class ExerciseView(ViewSet):
         exercise.title = request.data["title"]
         exercise.player = player
         exercise.description = request.data["description"]
-        if request.data["examplePicture"] is "":
+        if request.data["examplePicture"] != "":
             format, imgstr = request.data["examplePicture"].split(';base64,')
             ext = format.split('/')[-1]
             data = ContentFile(base64.b64decode(imgstr), name=f'{request.data["title"]}-{uuid.uuid4()}.{ext}')
