@@ -88,6 +88,7 @@ class PracticePlanView(ViewSet):
         """
         practice_plans = PracticePlan.objects.filter(Q(player__user=request.auth.user) | Q(player__is_public=1))
         search_text = self.request.query_params.get('q', None)
+        user_data = self.request.query_params.get('isUser', None)
 
         for practice_plan in practice_plans:
             if practice_plan.player.user == request.auth.user:
@@ -97,6 +98,14 @@ class PracticePlanView(ViewSet):
 
         if search_text is not None:
             practice_plans = practice_plans.filter(Q(title__contains=search_text)| Q(description__contains=search_text))
+        
+        if user_data  != "" or None:
+            practice_plans = practice_plans.filter(Q(player__user=request.auth.user))
+            for practice_plan in practice_plans:
+                if practice_plan.player.user == request.auth.user:
+                    practice_plan.is_creator = True
+                else:
+                    practice_plan.is_creator = False
 
         serializer = PracticePlanSerializer(
             practice_plans, many=True, context={'request': request})

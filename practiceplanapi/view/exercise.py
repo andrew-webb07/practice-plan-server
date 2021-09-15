@@ -111,7 +111,6 @@ class ExerciseView(ViewSet):
             Response -- JSON serialized list of exercises
         """
         exercises = Exercise.objects.filter(Q(player__user=request.auth.user) | Q(player__is_public=1))
-        search_text = self.request.query_params.get('q', None)
 
         for exercise in exercises:
             if exercise.player.user == request.auth.user:
@@ -119,8 +118,33 @@ class ExerciseView(ViewSet):
             else:
                 exercise.is_creator = False
 
+        search_text = self.request.query_params.get('q', None)
+        category_text = self.request.query_params.get('category', None)
+        user_data = self.request.query_params.get('isUser', None)
+
         if search_text is not None:
-            exercises = exercises.filter(Q(title__contains=search_text) | Q(description__contains=search_text) | Q(category__label__contains=search_text))
+            exercises = exercises.filter(Q(title__contains=search_text) | Q(description__contains=search_text))
+            for exercise in exercises:
+                if exercise.player.user == request.auth.user:
+                    exercise.is_creator = True
+                else:
+                    exercise.is_creator = False
+
+        if category_text is not None:
+            exercises = exercises.filter(Q(category__label__contains=category_text))
+            for exercise in exercises:
+                if exercise.player.user == request.auth.user:
+                    exercise.is_creator = True
+                else:
+                    exercise.is_creator = False
+        
+        if user_data != "" or None:
+            exercises = exercises.filter(Q(player__user=request.auth.user))
+            for exercise in exercises:
+                if exercise.player.user == request.auth.user:
+                    exercise.is_creator = True
+                else:
+                    exercise.is_creator = False
 
         serializer = ExerciseSerializer(
             exercises, many=True, context={'request': request})

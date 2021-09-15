@@ -81,12 +81,21 @@ class CategoryView(ViewSet):
             Response -- JSON serialized list of categories
         """
         categories = Category.objects.filter(Q(player__user=request.auth.user) | Q(player__is_public=1))
+        user_data = self.request.query_params.get('isUser', None)
 
         for category in categories:
             if category.player.user == request.auth.user:
                 category.is_creator = True
             else:
                 category.is_creator = False
+
+        if user_data  != "" or None:
+            categories = categories.filter(Q(player__user=request.auth.user))
+            for category in categories:
+                if category.player.user == request.auth.user:
+                    category.is_creator = True
+                else:
+                    category.is_creator = False
 
         serializer = CategorySerializer(
             categories, many=True, context={'request': request})
