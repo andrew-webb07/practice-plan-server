@@ -7,7 +7,7 @@
             "title": "rudiments",
             "description": "All exercises on the 1st page of stick control",
             "category": 2,
-            "example_picture": ""
+            "example_picture": "image/rudiments.JPG"
         }
     },
     {
@@ -19,6 +19,39 @@
             "description": "Play different grooves to metronome with 8 bars with click 8 bars no click",
             "category": 1,
             "example_picture": ""
+        }
+    },
+    {
+        "model": "practiceplanapi.exercise",
+        "pk": 3,
+        "fields": {
+            "player": 2,
+            "title": "16th Note Groove",
+            "description": "Right hand 16th note groove with various kick patterns",
+            "category": 4,
+            "example_picture": "image/IMG_2302.JPG"
+        }
+    },
+    {
+        "model": "practiceplanapi.exercise",
+        "pk": 4,
+        "fields": {
+            "player": 2,
+            "title": "Doubles With Kick",
+            "description": "Playing doubles with right foot; Example: RLKK RKKL KKRL KLRK",
+            "category": 3,
+            "example_picture": ""
+        }
+    },
+    {
+        "model": "practiceplanapi.exercise",
+        "pk": 5,
+        "fields": {
+            "player": 2,
+            "title": "4-on-the-floor",
+            "description": "Playing the main groove",
+            "category": 4,
+            "example_picture": "image/4_on_the_floor.JPG"
         }
     }
 ]

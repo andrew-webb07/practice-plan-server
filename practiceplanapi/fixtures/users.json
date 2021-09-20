@@ -16,5 +16,23 @@
             "groups": [],
             "user_permissions": []
         }
+    },
+    {
+        "model": "auth.user",
+        "pk": 2,
+        "fields": {
+            "password": "pbkdf2_sha256$260000$YR3DLYvSp55xyqwbtWD17w$fFNj6PIdgYu4fy6dZVRZ1Higq6amVkWNVixnkyXOZPU=",
+            "last_login": null,
+            "is_superuser": false,
+            "username": "webbandr",
+            "first_name": "Andrew",
+            "last_name": "Webb",
+            "email": "andrew@nss.com",
+            "is_staff": false,
+            "is_active": true,
+            "date_joined": "2020-08-28T14:51:39.989Z",
+            "groups": [],
+            "user_permissions": []
+        }
     }
 ]
