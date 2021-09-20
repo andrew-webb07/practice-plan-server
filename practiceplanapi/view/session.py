@@ -12,7 +12,7 @@ class SessionView(ViewSet):
     """Practice Plan Sessions"""
 
     def create(self, request):
-        """Handle POST operations
+        """Handle POST operations for creating a session
         Returns:
             Response -- JSON serialized session instance
         """

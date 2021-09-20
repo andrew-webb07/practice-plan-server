@@ -12,7 +12,7 @@ class CategoryView(ViewSet):
     """Practice Plan Categories"""
 
     def create(self, request):
-        """Handle POST operations
+        """Handle POST operations for creating a Category
         Returns:
             Response -- JSON serialized category instance
         """
@@ -83,12 +83,14 @@ class CategoryView(ViewSet):
         categories = Category.objects.filter(Q(player__user=request.auth.user) | Q(player__is_public=1))
         user_data = self.request.query_params.get('isUser', None)
 
+        # Show whether user signed in created category
         for category in categories:
             if category.player.user == request.auth.user:
                 category.is_creator = True
             else:
                 category.is_creator = False
 
+        # If checkbox is clicked, show only the current user's categories
         if user_data  != "" or None:
             categories = categories.filter(Q(player__user=request.auth.user))
             for category in categories:

@@ -19,7 +19,7 @@ class ExerciseView(ViewSet):
     """Practice Plan Exercises"""
 
     def create(self, request):
-        """Handle POST operations
+        """Handle POST operations for an exercise
         Returns:
             Response -- JSON serialized exercise instance
         """
@@ -29,7 +29,6 @@ class ExerciseView(ViewSet):
         exercise.title = request.data["title"]
         exercise.description = request.data["description"]
         exercise.player = player
-        # exercise.example_picture = request.data["examplePicture"]
         if request.data["examplePicture"] != "":
             format, imgstr = request.data["examplePicture"].split(';base64,')
             ext = format.split('/')[-1]
@@ -53,9 +52,7 @@ class ExerciseView(ViewSet):
             Response -- JSON serialized exercise instance
         """
         try:
-
             exercise = Exercise.objects.get(pk=pk)
-
             serializer = ExerciseSerializer(exercise, context={'request': request})
             return Response(serializer.data)
 
@@ -112,6 +109,7 @@ class ExerciseView(ViewSet):
         """
         exercises = Exercise.objects.filter(Q(player__user=request.auth.user) | Q(player__is_public=1))
 
+        # Show whether user signed in created exercise
         for exercise in exercises:
             if exercise.player.user == request.auth.user:
                 exercise.is_creator = True
@@ -122,6 +120,7 @@ class ExerciseView(ViewSet):
         category_text = self.request.query_params.get('category', None)
         user_data = self.request.query_params.get('isUser', None)
 
+        # If there is content in the search bar, filter exercises by input text
         if search_text is not None:
             exercises = exercises.filter(Q(title__contains=search_text) | Q(description__contains=search_text))
             for exercise in exercises:
@@ -130,6 +129,7 @@ class ExerciseView(ViewSet):
                 else:
                     exercise.is_creator = False
 
+        # If there is content in the category dropdown , filter exercises by category selected
         if category_text is not None:
             exercises = exercises.filter(Q(category__label__contains=category_text))
             for exercise in exercises:
@@ -137,7 +137,8 @@ class ExerciseView(ViewSet):
                     exercise.is_creator = True
                 else:
                     exercise.is_creator = False
-        
+
+        # If checkbox is clicked, show only the current user's exercises       
         if user_data != "" or None:
             exercises = exercises.filter(Q(player__user=request.auth.user))
             for exercise in exercises:
