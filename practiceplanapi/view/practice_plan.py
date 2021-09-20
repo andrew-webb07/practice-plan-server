@@ -12,7 +12,7 @@ class PracticePlanView(ViewSet):
     """Practice Plan Practice Plans"""
 
     def create(self, request):
-        """Handle POST operations
+        """Handle POST operations to create a practice plan
         Returns:
             Response -- JSON serialized practice plan instance
         """
@@ -88,6 +88,7 @@ class PracticePlanView(ViewSet):
         """
         practice_plans = PracticePlan.objects.filter(Q(player__user=request.auth.user) | Q(player__is_public=1))
 
+        # Show whether user signed in created practice plan
         for practice_plan in practice_plans:
             if practice_plan.player.user == request.auth.user:
                 practice_plan.is_creator = True
@@ -97,6 +98,7 @@ class PracticePlanView(ViewSet):
         search_text = self.request.query_params.get('q', None)
         user_data = self.request.query_params.get('isUser', None)
 
+        # If there is content in the search bar, filter practice plans by input text
         if search_text is not None:
             practice_plans = practice_plans.filter(Q(title__contains=search_text))
             for pratice_plan in practice_plans:
@@ -105,6 +107,7 @@ class PracticePlanView(ViewSet):
                 else:
                     pratice_plan.is_creator = False
         
+        # If checkbox is clicked, show only the current user's practice plans
         if user_data != "" or None:
             practice_plans = practice_plans.filter(Q(player__user=request.auth.user))
             for practice_plan in practice_plans:
