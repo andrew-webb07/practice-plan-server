@@ -4,9 +4,19 @@
         "pk": 1,
         "fields": {
             "user": 1,
-            "practice_focus": "Guitar",
+            "practice_focus": "Drums",
             "bio": "Test Player",
             "is_public": false
+        }
+    },
+    {
+        "model": "practiceplanapi.player",
+        "pk": 2,
+        "fields": {
+            "user": 2,
+            "practice_focus": "Drums",
+            "bio": "I've played drums for 20 years",
+            "is_public": true
         }
     }
 ]

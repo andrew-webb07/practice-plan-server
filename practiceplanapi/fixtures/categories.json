@@ -14,5 +14,21 @@
             "player": 1,
             "label": "Speed"
         }
+    },
+    {
+        "model": "practiceplanapi.category",
+        "pk": 3,
+        "fields": {
+            "player": 2,
+            "label": "Endurance"
+        }
+    },
+    {
+        "model": "practiceplanapi.category",
+        "pk": 4,
+        "fields": {
+            "player": 2,
+            "label": "Grooves"
+        }
     }
 ]

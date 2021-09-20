@@ -18,5 +18,25 @@
             "description": "Focusing on building speed",
             "exercises": [1]
         }
+    },
+    {
+        "model": "practiceplanapi.practiceplan",
+        "pk": 3,
+        "fields": {
+            "player": 2,
+            "title": "Fundamentals",
+            "description": "Working on Basic Technique",
+            "exercises": [1,5]
+        }
+    },
+    {
+        "model": "practiceplanapi.practiceplan",
+        "pk": 4,
+        "fields": {
+            "player": 2,
+            "title": "Full Day",
+            "description": "Practicing it all",
+            "exercises": [1,2,3,4,5]
+        }
     }
 ]
