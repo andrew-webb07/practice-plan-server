@@ -71,7 +71,7 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
-ROOT_URLCONF = 'practice_plan.urls'
+ROOT_URLCONF = 'practice-plan-server.urls'
 
 TEMPLATES = [
     {
@@ -89,7 +89,7 @@ TEMPLATES = [
     },
 ]
 
-WSGI_APPLICATION = 'practice_plan.wsgi.application'
+WSGI_APPLICATION = 'practice-plan-server.wsgi.application'
 
 
 # Database
