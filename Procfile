@@ -1,0 +1,1 @@
+web: gunicorn practice-plan-server.wsgi --log-file -
