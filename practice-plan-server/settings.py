@@ -152,3 +152,7 @@ STATIC_URL = "/static/"
 STATICFILES_STORAGE = 'django.contrib.staticfiles.storage.StaticFilesStorage'
 
 django_on_heroku.settings(locals())
+
+MEDIA_ROOT = 'media'
+MEDIA_URL = '/media/'
+
