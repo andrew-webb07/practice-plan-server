@@ -43,7 +43,7 @@ The Practice Plan Server utilizes unmapped properties to send information along 
     <li>Finish installation by following the instructions found here:</li>
 </ol>
 <p>
-    <a href="https://github.com/andrew-webb07/practice-plan-client" target="_blank">Server Repo</a>
+    <a href="https://github.com/andrew-webb07/practice-plan-client" target="_blank">Client Repo</a>
 </p>
 
 #### Created by Andrew Webb
