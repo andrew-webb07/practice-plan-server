@@ -78,6 +78,8 @@ class ExerciseView(ViewSet):
             ext = format.split('/')[-1]
             data = ContentFile(base64.b64decode(imgstr), name=f'{request.data["title"]}-{uuid.uuid4()}.{ext}')
             exercise.example_picture = data
+        else:
+            exercise.example_picture = ""
 
         exercise_category = Category.objects.get(pk=request.data["categoryId"])
         exercise.category = exercise_category
