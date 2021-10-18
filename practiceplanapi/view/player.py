@@ -1,5 +1,4 @@
 """View module for handling requests about players"""
-from django.core.exceptions import ValidationError
 from rest_framework import status
 from django.http import HttpResponseServerError
 from rest_framework.viewsets import ViewSet

@@ -1,7 +1,4 @@
 """View module for handling requests about exercises"""
-from practiceplanapi.models import practice_plan
-from practiceplanapi.models.practice_plan import PracticePlan
-from practiceplanapi.models.plan_exercise import PlanExercise
 from django.core.exceptions import ValidationError
 from rest_framework import status
 from django.http import HttpResponseServerError
@@ -9,7 +6,7 @@ from rest_framework.decorators import action
 from rest_framework.viewsets import ViewSet
 from rest_framework.response import Response
 from rest_framework import serializers
-from practiceplanapi.models import Exercise, Player, Category, PlanExercise
+from practiceplanapi.models import Exercise, Player, Category
 from django.core.files.base import ContentFile
 import base64
 import uuid
