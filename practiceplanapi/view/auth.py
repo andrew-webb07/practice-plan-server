@@ -56,6 +56,7 @@ def register_user(request):
     )
 
     token = Token.objects.create(user=player.user)
-    data = { 'token': token.key }
+    data = { 'token': token.key,
+            'username':new_user.username }
     return Response(data, status=status.HTTP_201_CREATED)
 
