@@ -7,7 +7,7 @@
             "title": "rudiments",
             "description": "All exercises on the 1st page of stick control",
             "category": 2,
-            "example_picture": "image/rudiments.JPG"
+            "example_picture": ""
         }
     },
     {
@@ -29,7 +29,7 @@
             "title": "16th Note Groove",
             "description": "Right hand 16th note groove with various kick patterns",
             "category": 4,
-            "example_picture": "image/IMG_2302.JPG"
+            "example_picture": ""
         }
     },
     {
@@ -51,7 +51,7 @@
             "title": "4-on-the-floor",
             "description": "Playing the main groove",
             "category": 4,
-            "example_picture": "image/4_on_the_floor.JPG"
+            "example_picture": ""
         }
     }
 ]
