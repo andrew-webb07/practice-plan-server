@@ -22,9 +22,11 @@ def login_user(request):
 
     if authenticated_user is not None:
         token = Token.objects.get(user=authenticated_user)
+        player = Player.objects.get(user=authenticated_user)
         data = {
             'valid': True,
-            'token': token.key
+            'token': token.key,
+            'username' : player.user.username
         }
         return Response(data)
     else:
@@ -57,6 +59,6 @@ def register_user(request):
 
     token = Token.objects.create(user=player.user)
     data = { 'token': token.key,
-            'username':new_user.username }
+            'username': new_user.username }
     return Response(data, status=status.HTTP_201_CREATED)
 
